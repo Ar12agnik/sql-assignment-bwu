@@ -1,0 +1,45 @@
+select * from member
+select * from issue
+select * from books
+SELECT book_name, cost FROM books WHERE cost = (SELECT MAX(cost) FROM books)
+select min(cost),avg(cost),sum(cost) from books;
+SELECT member.MEMBER_NAME, member.MEMBER_ID FROM member JOIN issue ON member.MEMBER_ID =issue.MEMBER_ID WHERE issue.ISSUE_DATE BETWEEN '26-Jan-11 ' AND '14-April-11';
+select BOOK_NAME,AUTHOR_NAME,CATEGORY from books where CATEGORY not in ('OTHERS')
+select BOOK_NAME,AUTHOR_NAME from books where AUTHOR_NAME  like '____T%';
+select count(BOOK_NAME) from books where cost>350
+select count(distinct(AUTHOR_NAME)) from books
+select abs(-167) from dual
+select power(8,6) from dual
+select round(134.56789,2) from dual
+select sqrt(144) from dual
+SELECT FLOOR(13.15), CEIL(13.15)from dual;
+SELECT EXTRACT(YEAR FROM SYSDATE), EXTRACT(MONTH FROM SYSDATE), EXTRACT(DAY FROM SYSDATE)from dual;
+
+SELECT MAX(value) AS greatest_value FROM (SELECT 4 AS value FROM dual UNION ALL SELECT 5 FROM dual
+      UNION ALL
+      SELECT 17 FROM dual);
+SELECT MIN(value) AS greatest_value FROM (SELECT 4 AS value FROM dual UNION ALL SELECT 5 FROM dual
+      UNION ALL
+      SELECT 17 FROM dual);
+SELECT SUBSTR('INFOSYS', 4, 4) AS extracted_letters
+FROM dual;
+SELECT ASCII('a'),ASCII('S') from dual
+SELECT LENGTH('INFOSYS'),REPLACE('INFOSYS', 'S', 'T')FROM dual;
+SELECT MEMBER_NAME,MEMBER_ADDRESS FROM MEMBER WHERE MEMBER_ADDRESS LIKE 'KOLKATA'
+SELECT BOOK_NAME,COST FROM BOOKS WHERE COST BETWEEN 300 AND 500
+SELECT MEMBER_NAME FROM MEMBER WHERE MEMBERSHIP_TYPE LIKE 'Half Yearly'
+SELECT MEMBER_NAME FROM MEMBER WHERE ACC_OPEN_DATE LIKE '_______11'
+#19
+SELECT member.max_books_allowed FROM member JOIN issue ON member.member_id = issue.member_id where issue.ISSUE_DATE like '___JAN%'
+SELECT MEMBER_NAME FROM member WHERE MEMBER_ID NOT IN (SELECT member_id FROM issue);
+#22
+select BOOK_NAME from books where AUTHOR_NAME like 'LONI' and COST<600
+select * from issue where RETURN_DATE is NULL
+select BOOK_NAME from books where CATEGORY in ('DATABASE','SCIENCE')
+#26
+select * from books order by CATEGORY ASC,cost desc
+select BOOK_NAME from books where BOOK_NAME like '%SQL%'
+select MEMBER_NAME from member where MEMBER_NAME like 'S%'
+select MEMBER_NAME from member where (MEMBER_NAME like 'S%T%') or (MEMBER_NAME like 'A%T%')
+SELECT INITCAP(book_name) AS book_name, UPPER(author_name) FROM books
+ORDER BY book_name DESC;
