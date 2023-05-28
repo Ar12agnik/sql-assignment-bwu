@@ -1,0 +1,85 @@
+
+1. List the various categories and count of books in each category:
+```sql
+SELECT CATEGORY, COUNT(*) AS BOOK_COUNT
+FROM BOOKS
+GROUP BY CATEGORY;
+```
+
+2. List the BOOK_NO and the NUMBER OF TIMES the Book is issued in descending order of count:
+```sql
+SELECT BOOK_NO, COUNT(*) AS ISSUE_COUNT
+FROM ISSUE
+GROUP BY BOOK_NO
+ORDER BY ISSUE_COUNT DESC;
+```
+
+3. Display the MEMBER ID and the NO OF BOOKS for each member that has issued more than 1 book:
+```sql
+SELECT MEMBER_ID, COUNT(*) AS BOOK_COUNT
+FROM ISSUE
+GROUP BY MEMBER_ID
+HAVING COUNT(*) > 1;
+```
+
+4. Display the MEMBER ID, BOOK NO, and NO OF TIMES the same book is issued by the MEMBER in descending order of count:
+```sql
+SELECT MEMBER_ID, BOOK_NO, COUNT(*) AS ISSUE_COUNT
+FROM ISSUE
+GROUP BY MEMBER_ID, BOOK_NO
+ORDER BY ISSUE_COUNT DESC;
+```
+
+5. Select all information of the book with the 2nd maximum cost:
+```sql
+SELECT *
+FROM BOOKS
+WHERE COST = (
+    SELECT MAX(COST)
+    FROM BOOKS
+    WHERE COST < (
+        SELECT MAX(COST)
+        FROM BOOKS
+    )
+);
+```
+
+6. Copy the MEMBER, BOOKS, and ISSUE tables to MEMBER_COPY, BOOKS_COPY, and ISSUE_COPY respectively:
+```sql
+CREATE TABLE MEMBER_COPY AS SELECT * FROM MEMBER;
+CREATE TABLE BOOKS_COPY AS SELECT * FROM BOOKS;
+CREATE TABLE ISSUE_COPY AS SELECT * FROM ISSUE;
+```
+
+7. Create a table named QUERY1 with two attributes as BOOK_NO and ISSUE_DATE and copy all information about BOOK_NO and ISSUE_DATE from the ISSUE table to the QUERY1 table:
+```sql
+CREATE TABLE QUERY1 AS SELECT BOOK_NO, ISSUE_DATE FROM ISSUE;
+```
+
+8. Create and store BOOK_NAME, AUTHOR_NAME, and COST to QUERY2 table where cost is greater than 300:
+```sql
+CREATE TABLE QUERY2 AS SELECT BOOK_NAME, AUTHOR_NAME, COST FROM BOOKS WHERE COST > 300;
+```
+
+9. Insert BOOK_NAME, AUTHOR_NAME, and COST to QUERY2 table where cost is less than 300:
+```sql
+INSERT INTO QUERY2 (BOOK_NAME, AUTHOR_NAME, COST)
+SELECT BOOK_NAME, AUTHOR_NAME, COST
+FROM BOOKS
+WHERE COST < 300;
+```
+
+10. Add an attribute named AVAILABLE with data type NUMBER (5) in the BOOKS_COPY table and fill up the new attribute with data:
+```sql
+ALTER TABLE BOOKS_COPY ADD AVAILABLE NUMBER(5);
+-- Update the AVAILABLE attribute with appropriate values
+UPDATE BOOKS_COPY
+SET AVAILABLE = <some_value>;
+```
+
+11. Change the data type of the CATEGORY attribute to VARCHAR2 (15) in the BOOKS_COPY table:
+```sql
+ALTER TABLE BOOKS_COPY MODIFY CATEGORY VARCHAR2(15);
+```
+
+Please note that you may need to modify the table and column names in these commands to match your specific database schema. Also, make sure to execute these commands in your DBMS environment with caution and back up your data before making any modifications.
