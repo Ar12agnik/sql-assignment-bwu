@@ -1,0 +1,58 @@
+add two numbers
+
+declare
+
+
+x number(5);			
+y number(5);		
+z number(7);	
+
+begin
+
+
+x:=10;				
+
+
+y:=20;				
+
+
+z:=x+y;				
+
+
+dbms_output.put_line('Sum is '||z);
+end;
+/declare
+
+
+x number(5);			
+y number(5);		
+z number(7);	
+
+begin
+
+
+x:=10;				
+
+
+y:=20;				
+
+
+z:=x+y;				
+
+
+dbms_output.put_line('Sum is '||z);
+end;
+/
+
+divide 14 by 3
+
+
+
+DECLARE
+  dividend NUMBER := 14;
+  divisor NUMBER := 3;
+  remainder NUMBER;
+BEGIN
+  remainder := MOD(dividend, divisor);
+  DBMS_OUTPUT.PUT_LINE('The remainder of ' || dividend || ' ÷ ' || divisor || ' is: ' || remainder);
+END;
