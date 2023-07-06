@@ -4,6 +4,16 @@ ALTER TABLE BOOKS ADD CONSTRAINT  CATEGORY CHECK (CATEGORY IN ('SCIENCE','DATABA
 
 CREATE TABLE ISSUE (LIB_ISSUE_ID NUMBER(4),BOOK_NO NUMBER(3), MEMBER_ID NUMBER(5) ,ISSUE_DATE DATE,RETURN_DATE DATE);
 desc issue
+CREATE TABLE member (
+  member_id NUMBER(10) PRIMARY KEY,
+  member_name VARCHAR2(50) NOT NULL,
+  member_address VARCHAR2(50),
+  acc_open_date DATE,
+  membership_type VARCHAR2(20) CHECK (membership_type IN ('Lifetime', 'Annual', 'Half Yearly', 'Quarterly')),
+  fees_paid NUMBER(4),
+  max_books_allowed NUMBER(2) CHECK (max_books_allowed < 7),
+  penalty_amount NUMBER(7,2) CHECK (penalty_amount <= 1000)
+);
 
 ALTER TABLE ISSUE
 ADD CONSTRAINT FK_PersonOrde
@@ -24,16 +34,7 @@ INSERT INTO MEMBER VALUES(9,'ARPITA ROY','KOLKATA',DATE'2011-7-31','Half Yearly'
 
 SELECT * FROM MEMBER;
 
-CREATE TABLE member (
-  member_id NUMBER(10) PRIMARY KEY,
-  member_name VARCHAR2(50) NOT NULL,
-  member_address VARCHAR2(50),
-  acc_open_date DATE,
-  membership_type VARCHAR2(20) CHECK (membership_type IN ('Lifetime', 'Annual', 'Half Yearly', 'Quarterly')),
-  fees_paid NUMBER(4),
-  max_books_allowed NUMBER(2) CHECK (max_books_allowed < 7),
-  penalty_amount NUMBER(7,2) CHECK (penalty_amount <= 1000)
-);
+
 INSERT INTO books (BOOK_NO, BOOK_NAME, AUTHOR_NAME, COST, CATEGORY)
 VALUES (101, 'LETS US C', 'DENIS RITCHIE', 450, 'OTHERS');
 INSERT INTO books (BOOK_NO, BOOK_NAME, AUTHOR_NAME, COST, CATEGORY)
