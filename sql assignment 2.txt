@@ -1,8 +1,7 @@
 select * from member
 select * from issue
 select * from books
-SELECT book_name, cost FROM books WHERE cost = (SELECT MAX(cost) FROM books)
-select min(cost),avg(cost),sum(cost) from books;
+select min(cost) as Min_cost,avg(cost) as AVG_cost, sum(cost) as TOTAL_COST from books;
 SELECT member.MEMBER_NAME, member.MEMBER_ID FROM member JOIN issue ON member.MEMBER_ID =issue.MEMBER_ID WHERE issue.ISSUE_DATE BETWEEN '26-Jan-11 ' AND '14-April-11';
 select BOOK_NAME,AUTHOR_NAME,CATEGORY from books where CATEGORY not in ('OTHERS')
 select BOOK_NAME,AUTHOR_NAME from books where AUTHOR_NAME  like '____T%';
